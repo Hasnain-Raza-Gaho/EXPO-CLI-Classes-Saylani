@@ -8,11 +8,39 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useState } from "react";
+import Firebase from "./src/Config/Firebase";
 
 export default function App() {
  const [signUp , setSignUp] = useState(true)
 
+ const [name,setname] =useState()
+ const [username,setusername] =useState()
+ const [email,setemail] =useState()
+ const [password,setpassword] =useState()
 
+
+const useradd=()=>{
+  console.log(name)
+  Firebase.auth().createUserWithEmailAndPassword(email,password)
+  .then((data) => {
+    console.log(data.user.uid)
+    var key = Firebase.database().ref("user").push().key;
+    console.log(key)
+   var obj = {
+     name:name,
+     email:email,
+     password:password,
+     key : key
+
+
+   }
+   Firebase.database().ref("user").child(key).set(obj)
+  })
+  .catch((e)=>{
+    console.log(e)
+  })
+
+}
  
   return (
     <>
@@ -25,16 +53,28 @@ export default function App() {
             <Text style={styles.signupText}>Create an Account</Text>
           </View>
           <View styles={styles.forminner}>
-            <TextInput style={styles.textfield} placeholder="Full Name" />
-            <TextInput style={styles.textfield} placeholder="@username" />
-            <TextInput style={styles.textfield} placeholder="Email" />
+            <TextInput style={styles.textfield} placeholder="Full Name"
+             value={name} 
+            onChangeText={(e)=>setname(e)}
+            />
+            <TextInput style={styles.textfield} placeholder="@username" 
+              value={username} 
+              onChangeText={(e)=>setusername(e)}
+            />
+            <TextInput style={styles.textfield} placeholder="Email"
+              value={email} 
+              onChangeText={(e)=>setemail(e)}
+            />
             <TextInput
               style={styles.textfield}
               placeholder="Password"
-              secureTextEntry={true}
+              secureTextEntry={true} //for password
+              value={password} 
+              onChangeText={(e)=>setpassword(e)}
+
             />
             <View style={styles.button}>
-              <Button title="SignUp" style={styles.btn}></Button>
+              <Button title="SignUp" style={styles.btn} onPress={()=>useradd()}></Button>
             </View>
             <View style={styles.signin}>
              <Text><TouchableOpacity style={styles.signintext} onPress={()=>setSignUp(false)} >SignIn</TouchableOpacity >, if you have an account!</Text>
