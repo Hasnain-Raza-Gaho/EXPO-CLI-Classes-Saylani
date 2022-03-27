@@ -1,22 +1,21 @@
+
 import  firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 import 'firebase/compat/auth'
 import 'firebase/compat/storage'
 
-
-
 const firebaseConfig = {
-  apiKey: "AIzaSyBmhkV5_xesju_qP5ZlQf0SrAj0xhk10g0",
-  authDomain: "raza-stuff.firebaseapp.com",
-  databaseURL: "https://raza-stuff-default-rtdb.firebaseio.com",
-  projectId: "raza-stuff",
-  storageBucket: "raza-stuff.appspot.com",
-  messagingSenderId: "628992143595",
-  appId: "1:628992143595:web:a96b3f8b83c5e7dc4a8eae"
-};
+    apiKey: "AIzaSyAbKo1pJNu-vYQ0FrqBD3cy2xU0ZqX-Xpw",
+    authDomain: "pilot-project-ba3a0.firebaseapp.com",
+    databaseURL: "https://pilot-project-ba3a0-default-rtdb.firebaseio.com",
+    projectId: "pilot-project-ba3a0",
+    storageBucket: "pilot-project-ba3a0.appspot.com",
+    messagingSenderId: "215116819786",
+    appId: "1:215116819786:web:9110490af9cd30533d65b3"
+  };
 
-console.log(firebase)
+  console.log(firebase)
 
-firebase.initializeApp(firebaseConfig);
-
-  export { firebase as default }
+  firebase.initializeApp(firebaseConfig);
+  
+    export { firebase as default } 
